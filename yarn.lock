@@ -779,10 +779,23 @@ fast-safe-stringify@^2.0.7:
   resolved "https://registry.npm.taobao.org/fast-safe-stringify/download/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha1-EkqohYmSYfaK7bQqfAgN6dpgh0M=
 
+fastify-cors@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.taobao.org/fastify-cors/download/fastify-cors-5.2.0.tgz#a92af64d9b7df1cd736c90ecd894a7b23c0cd75a"
+  integrity sha1-qSr2TZt98c1zbJDs2JSnsjwM11o=
+  dependencies:
+    fastify-plugin "^3.0.0"
+    vary "^1.1.2"
+
 fastify-error@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npm.taobao.org/fastify-error/download/fastify-error-0.3.0.tgz#08866323d521156375a8be7c7fcaf98df946fafb"
   integrity sha1-CIZjI9UhFWN1qL58f8r5jflG+vs=
+
+fastify-plugin@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/fastify-plugin/download/fastify-plugin-3.0.0.tgz#cf1b8c8098e3b5a7c8c30e6aeb06903370c054ca"
+  integrity sha1-zxuMgJjjtafIww5q6waQM3DAVMo=
 
 fastify-warning@^0.2.0:
   version "0.2.0"
@@ -1858,6 +1871,11 @@ v8-compile-cache@^2.0.3:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.2.0.tgz#9471efa3ef9128d2f7c6a7ca39c4dd6b5055b132"
   integrity sha1-lHHvo++RKNL3xqfKOcTda1BVsTI=
+
+vary@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
+  integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
 which@^2.0.1:
   version "2.0.2"

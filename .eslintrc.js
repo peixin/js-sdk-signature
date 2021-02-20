@@ -6,5 +6,7 @@ module.exports = {
   env: {
     node: true,
   },
-  rules: {},
-}
+  rules: {
+    "@typescript-eslint/no-var-requires": "off",
+  },
+};
