@@ -24,7 +24,7 @@ const options = {
 
 fastify
   .register(require("fastify-env"), options)
-  .register(require("fastify-cors"), { origin: false })
+  .register(require("fastify-cors"), { origin: "*", methods: ["GET"] })
   .register(require("./wecom"), { prefix: "/wecom" })
   .ready(() => {
     Global.app = fastify;
