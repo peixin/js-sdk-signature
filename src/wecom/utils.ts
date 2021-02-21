@@ -1,14 +1,7 @@
 import Axios from "axios";
+import Global from "../global";
 import { JSONType } from "../types";
-import { AccessTokenData, JsApiTicketData, WecomResponseData } from "./types";
-
-const cachedData = {
-  accessToken: null,
-  jsApiTicket: null,
-} as {
-  accessToken: AccessTokenData | null;
-  jsApiTicket: JsApiTicketData | null;
-};
+import { WecomResponseData } from "./types";
 
 const fetchWecomData = async <T extends WecomResponseData>(url: string, params: JSONType) => {
   const ts = new Date().getTime();
@@ -20,7 +13,7 @@ const fetchWecomData = async <T extends WecomResponseData>(url: string, params: 
     }
     return _data;
   } catch (error) {
-    console.error(error);
+    Global.app.log.error(error);
     return null;
   }
 };

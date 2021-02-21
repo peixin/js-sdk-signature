@@ -185,7 +185,7 @@ acorn@^7.4.0:
   resolved "https://registry.npm.taobao.org/acorn/download/acorn-7.4.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Facorn%2Fdownload%2Facorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=
 
-ajv@^6.10.0, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.4:
+ajv@^6.10.0, ajv@^6.10.2, ajv@^6.11.0, ajv@^6.12.2, ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.npm.taobao.org/ajv/download/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha1-uvWmLoArB9l3A0WG+MO69a3ybfQ=
@@ -561,6 +561,16 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
+dotenv-expand@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.npm.taobao.org/dotenv-expand/download/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
+  integrity sha1-P7rwIL/XlIhAcuomsel5HUWmKfA=
+
+dotenv@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdotenv%2Fdownload%2Fdotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npm.taobao.org/duplexer3/download/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -589,6 +599,15 @@ enquirer@^2.3.5:
   integrity sha1-Kn/l3WNKHkElqXXsmU/1RW3Dc00=
   dependencies:
     ansi-colors "^4.1.1"
+
+env-schema@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/env-schema/download/env-schema-2.1.0.tgz#01aa8788fa6aa5afb12fcf77e665f2f10f9a0cfa"
+  integrity sha1-AaqHiPpqpa+xL8935mXy8Q+aDPo=
+  dependencies:
+    ajv "^6.10.2"
+    dotenv "^8.2.0"
+    dotenv-expand "^5.1.0"
 
 escape-goat@^2.0.0:
   version "2.1.1"
@@ -787,10 +806,25 @@ fastify-cors@^5.2.0:
     fastify-plugin "^3.0.0"
     vary "^1.1.2"
 
+fastify-env@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/fastify-env/download/fastify-env-2.1.0.tgz#41732e81b69ec95baa9734f8c81bcc59118d828a"
+  integrity sha1-QXMugbaeyVuqlzT4yBvMWRGNgoo=
+  dependencies:
+    env-schema "^2.0.0"
+    fastify-plugin "^2.0.0"
+
 fastify-error@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npm.taobao.org/fastify-error/download/fastify-error-0.3.0.tgz#08866323d521156375a8be7c7fcaf98df946fafb"
   integrity sha1-CIZjI9UhFWN1qL58f8r5jflG+vs=
+
+fastify-plugin@^2.0.0:
+  version "2.3.4"
+  resolved "https://registry.npm.taobao.org/fastify-plugin/download/fastify-plugin-2.3.4.tgz#b17abdc36a97877d88101fb86ad8a07f2c07de87"
+  integrity sha1-sXq9w2qXh32IEB+4atigfywH3oc=
+  dependencies:
+    semver "^7.3.2"
 
 fastify-plugin@^3.0.0:
   version "3.0.0"

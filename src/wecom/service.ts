@@ -1,10 +1,7 @@
 import crypto from "crypto";
+import Global from "../global";
 import { AccessTokenData, JsApiTicketData } from "./types";
 import utils from "./utils";
-
-const corpId = "";
-const appSecret = "";
-const NONCESTR = "";
 
 const cachedData = {
   accessToken: null,
@@ -16,8 +13,10 @@ const cachedData = {
 
 const fetchAccessToken = async () => {
   return utils.fetchWecomData<AccessTokenData>("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
-    "corpid": corpId,
-    "corpsecret": appSecret,
+    // @ts-ignore
+    "corpid": Global.app.config.CORP_ID,
+    // @ts-ignore
+    "corpsecret": Global.app.config.APP_SECRET,
   });
 };
 
@@ -45,13 +44,14 @@ const getSignature = async (url: string, ts: number): Promise<string> => {
   if (!accessToken) {
     throw new Error("get accessToken failed");
   }
-  console.log("accessToken", accessToken);
+  Global.app.log.info(`accessToken: ${accessToken}`);
   const ticket = await getJsApiTicket(accessToken);
   if (!ticket) {
     throw new Error("get JsApiTicket failed");
   }
-  console.log("ticket", ticket);
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${NONCESTR}&timestamp=${ts}&url=${url}`;
+  Global.app.log.info(`ticket: ${ticket}`);
+  // @ts-ignore
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.NONCESTR}&timestamp=${ts}&url=${url}`;
 
   const shaSum = crypto.createHash("sha1");
   shaSum.update(signatureStr);
