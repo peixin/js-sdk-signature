@@ -7,7 +7,7 @@ echo $ROOT $DIR
 DOCKER_FILE=$DIR/Dockerfile
 
 REGISTRY="registry.cn-hangzhou.aliyuncs.com/wg-common"
-IMAGE_NAME="js-api-signature"
+IMAGE_NAME="js-sdk-signature"
 IMAGE_VERSION=$(node -p -e "require('./package.json').version")
 GIT_COMMIT_HASH=$(git rev-parse  --short=6 HEAD | sed 's/[[:blank:]]//g')
 

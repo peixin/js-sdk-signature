@@ -1,10 +1,10 @@
 version: "3"
 
 services:
-  js-api-signature:
-    image: registry.cn-hangzhou.aliyuncs.com/wg-common/js-api-signature:1.0.0.dev
-    container_name: js-api-signature
+  js-sdk-signature:
+    image: registry.cn-hangzhou.aliyuncs.com/wg-common/js-sdk-signature:1.0.0.dev
+    container_name: js-sdk-signature
     volumes:
-      - ../.env:/apps/js-api-signature/.env
+      - ../.env:/apps/js-sdk-signature/.env
     ports:
      - "6004:3000"
