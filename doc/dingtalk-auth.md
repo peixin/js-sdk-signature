@@ -66,7 +66,7 @@ response: {
     "hide_mobile":false,
     "senior":false,
     "name":"杨xxx",
-    "state_code":"86"
+    "state_code":"86",
     "job_number":"10001", // 工号
  }
 }
