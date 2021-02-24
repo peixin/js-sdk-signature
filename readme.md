@@ -28,16 +28,6 @@
 
 
 
-TODO:
-
-> 企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。
-
-- 支持 access_token 提前过期 重新获取逻辑
-
-
-
-
-
 #### Usage
 
 ```bash

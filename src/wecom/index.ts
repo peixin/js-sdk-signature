@@ -1,7 +1,7 @@
 import { FastifyInstance, FastifyRequest } from "fastify";
-import { signatureSchema } from "./schema";
+import { signatureSchema } from "../schema";
 import service from "./service";
-import { SignatureQuerystring } from "./types";
+import { SignatureQuerystring } from "../types";
 
 const signatureHandler = async (request: FastifyRequest<{ Querystring: SignatureQuerystring }>) => {
   const { url, ts } = request.query;

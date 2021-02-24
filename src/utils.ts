@@ -1,9 +1,10 @@
 import Axios from "axios";
-import Global from "../global";
-import { JSONType } from "../types";
-import { WecomResponseData } from "./types";
+import Global from "./global";
+import { JSONType, APIResponseData } from "./types";
 
-const fetchWecomData = async <T extends WecomResponseData>(url: string, params: JSONType) => {
+const fetchAPIData = async <T extends APIResponseData>(url: string, params: JSONType) => {
+  Global.app.log.info(`fetch data: ${url}`);
+
   const ts = new Date().getTime();
   try {
     const { data } = await Axios.get(url, { params });
@@ -18,7 +19,7 @@ const fetchWecomData = async <T extends WecomResponseData>(url: string, params: 
   }
 };
 
-const getWecomData = async <T extends WecomResponseData>(data: null | T, fetDataFunc: () => Promise<null | T>) => {
+const getAPIData = async <T extends APIResponseData>(data: null | T, fetDataFunc: () => Promise<null | T>) => {
   if (!data) {
     data = await fetDataFunc();
   }
@@ -30,6 +31,6 @@ const getWecomData = async <T extends WecomResponseData>(data: null | T, fetData
 };
 
 export default {
-  fetchWecomData,
-  getWecomData,
+  fetchAPIData,
+  getAPIData,
 };

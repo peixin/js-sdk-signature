@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import Global from "../global";
-import { AccessTokenData, JsApiTicketData } from "./types";
-import utils from "./utils";
+import { AccessTokenData, JsApiTicketData } from "../types";
+import utils from "../utils";
 
 const cachedData = {
   accessToken: null,
@@ -12,7 +12,7 @@ const cachedData = {
 };
 
 const fetchAccessToken = async () => {
-  return utils.fetchWecomData<AccessTokenData>("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
+  return utils.fetchAPIData<AccessTokenData>("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
     // @ts-ignore
     "corpid": Global.app.config.WECOM_CORP_ID,
     // @ts-ignore
@@ -21,21 +21,24 @@ const fetchAccessToken = async () => {
 };
 
 const getAccessToken = async () => {
-  cachedData.accessToken = await utils.getWecomData<AccessTokenData>(cachedData.accessToken, fetchAccessToken);
+  cachedData.accessToken = await utils.getAPIData<AccessTokenData>(cachedData.accessToken, fetchAccessToken);
   return cachedData.accessToken?.access_token;
 };
 
 const fetchJsApiTicket = async (accessToken: string) => {
-  return utils.fetchWecomData<JsApiTicketData>("https://qyapi.weixin.qq.com/cgi-bin/ticket/get", {
+  return utils.fetchAPIData<JsApiTicketData>("https://qyapi.weixin.qq.com/cgi-bin/ticket/get", {
     "access_token": accessToken,
     "type": "agent_config",
   });
 };
 
 const getJsApiTicket = async (accessToken: string) => {
-  cachedData.jsApiTicket = await utils.getWecomData<JsApiTicketData>(cachedData.jsApiTicket, async () =>
+  cachedData.jsApiTicket = await utils.getAPIData<JsApiTicketData>(cachedData.jsApiTicket, async () =>
     fetchJsApiTicket(accessToken),
   );
+  if (!cachedData.jsApiTicket) {
+    cachedData.accessToken = null;
+  }
   return cachedData.jsApiTicket?.ticket;
 };
 
