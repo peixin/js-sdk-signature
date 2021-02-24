@@ -55,7 +55,7 @@ dd.ready(function() {
 response: {
   "errcode":0,
   "errmsg":"ok",
-  "request_id":"51jql88tpa6g"
+  "request_id":"51jql88tpa6g",
   "result": {
     "unionid":"gliiW0piiii02zBUjUkUWAuCQiEiE",
     "userid":"manager4220",
