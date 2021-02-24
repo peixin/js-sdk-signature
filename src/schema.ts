@@ -1,17 +1,38 @@
-export const envSchema = {
+export const envOptions = {
   dotenv: true,
   confKey: "config",
   schema: {
     type: "object",
-    required: ["CORP_ID", "APP_SECRET", "NONCESTR"],
+    required: [
+      "WECOM_CORP_ID",
+      "WECOM_APP_SECRET",
+      "WECOM_NONCESTR",
+      "DINGTALK_CORP_ID",
+      "DINGTALK_APP_SECRET",
+      "DINGTALK_NONCESTR",
+      "DINGTALK_APP_KEY",
+    ],
     properties: {
-      "CORP_ID": {
+      "WECOM_CORP_ID": {
         type: "string",
       },
-      "APP_SECRET": {
+      "WECOM_APP_SECRET": {
         type: "string",
       },
-      "NONCESTR": {
+      "WECOM_NONCESTR": {
+        type: "string",
+      },
+
+      "DINGTALK_CORP_ID": {
+        type: "string",
+      },
+      "DINGTALK_APP_KEY": {
+        type: "string",
+      },
+      "DINGTALK_APP_SECRET": {
+        type: "string",
+      },
+      "DINGTALK_NONCESTR": {
         type: "string",
       },
     },

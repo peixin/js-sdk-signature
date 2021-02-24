@@ -4,9 +4,14 @@ import fastify from "fastify";
 declare module "fastify" {
   interface FastifyInstance {
     config: {
-      "CORP_ID": string;
-      "APP_SECRET": string;
-      "NONCESTR": string;
+      "WECOM_CORP_ID": string;
+      "WECOM_APP_SECRET": string;
+      "WECOM_NONCESTR": string;
+
+      "DINGTALK_CORP_ID": string;
+      "DINGTALK_APP_KEY": string;
+      "DINGTALK_APP_SECRET": string;
+      "DINGTALK_NONCESTR": string;
     };
   }
 }

@@ -1,31 +1,14 @@
 import Fastify from "fastify";
 import Global from "./global";
+import { envOptions } from "./schema";
 
 const fastify = Fastify({ logger: true });
-const options = {
-  dotenv: true,
-  confKey: "config",
-  schema: {
-    type: "object",
-    required: ["CORP_ID", "APP_SECRET", "NONCESTR"],
-    properties: {
-      "CORP_ID": {
-        type: "string",
-      },
-      "APP_SECRET": {
-        type: "string",
-      },
-      "NONCESTR": {
-        type: "string",
-      },
-    },
-  },
-};
 
 fastify
-  .register(require("fastify-env"), options)
+  .register(require("fastify-env"), envOptions)
   .register(require("fastify-cors"), { origin: "*", methods: ["GET"] })
   .register(require("./wecom"), { prefix: "/wecom" })
+  .register(require("./dingtalk"), { prefix: "/dingtalk" })
   .ready(() => {
     Global.app = fastify;
   });

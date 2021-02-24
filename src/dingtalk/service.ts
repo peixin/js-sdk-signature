@@ -12,11 +12,11 @@ const cachedData = {
 };
 
 const fetchAccessToken = async () => {
-  return utils.fetchWecomData<AccessTokenData>("https://qyapi.weixin.qq.com/cgi-bin/gettoken", {
+  return utils.fetchWecomData<AccessTokenData>("https://oapi.dingtalk.com/gettoken", {
     // @ts-ignore
-    "corpid": Global.app.config.WECOM_CORP_ID,
+    "appkey": Global.app.config.DINGTALK_APP_KEY,
     // @ts-ignore
-    "corpsecret": Global.app.config.WECOM_APP_SECRET,
+    "appsecret": Global.app.config.DINGTALK_APP_SECRET,
   });
 };
 
@@ -26,9 +26,8 @@ const getAccessToken = async () => {
 };
 
 const fetchJsApiTicket = async (accessToken: string) => {
-  return utils.fetchWecomData<JsApiTicketData>("https://qyapi.weixin.qq.com/cgi-bin/ticket/get", {
+  return utils.fetchWecomData<JsApiTicketData>("https://oapi.dingtalk.com/get_jsapi_ticket", {
     "access_token": accessToken,
-    "type": "agent_config",
   });
 };
 
@@ -51,7 +50,7 @@ const getSignature = async (url: string, ts: number): Promise<string> => {
   }
   Global.app.log.info(`ticket: ${ticket}`);
   // @ts-ignore
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.WECOM_NONCESTR}&timestamp=${ts}&url=${url}`;
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.DINGTALK_NONCESTR}&timestamp=${ts}&url=${url}`;
 
   const shaSum = crypto.createHash("sha1");
   shaSum.update(signatureStr);
