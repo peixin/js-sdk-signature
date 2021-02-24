@@ -8,8 +8,32 @@
 
 
 
+
+#### 企业微信
 - [企业微信 JS-SDK 签名流程](./doc/wecom-js-sdk-signature.md)
-- 微信 JS-SDK 签名流程 待完善
+- [企业微信 JS-SDK 客户端注入权限验证配置: wx.config](./doc/wecom-js-sdk-config.md)
+
+
+#### 钉钉
+- [钉钉 JS-SDK 签名流程](./doc/dingtalk-js-sdk-signature.md)
+- [钉钉 JS-SDK 客户端注入权限验证配置: dd.config](./doc/dingtalk-js-sdk-config.md)
+- [钉钉登入对接流程](./doc/dingtalk-auth.md)
+- [钉钉企业内微应用开发文档](./doc/dingtalk-h5-dev.md)
+
+
+#### 微信
+- 待实现
+
+
+
+
+TODO:
+
+> 企业微信可能会出于运营需要，提前使access_token失效，开发者应实现access_token失效时重新获取的逻辑。
+
+- 支持 access_token 提前过期 重新获取逻辑
+
+
 
 
 
