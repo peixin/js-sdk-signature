@@ -1,10 +1,10 @@
-### WeCom / WeChat JS-SDK Signature Server
-### 企业微信 / 微信 JS-SDK 签名 服务
+### WeCom / WeChat / DingTalk JS-SDK Signature Server
+### 企业微信 / 微信  / 钉钉 JS-SDK 签名 服务
 
 
 
 [WeCom Official Documentation](https://work.weixin.qq.com/api/doc/90000/90136/90512)
-
+[DingTalk Official Documentation](https://developers.dingtalk.com/document/app/read-before-development)
 
 
 
@@ -16,10 +16,14 @@
 #### Usage
 
 ```bash
+cp .env.template .env
+update .env info
+
 yarn install
 yarn build
 yarn start
 curl "http://0.0.0.0:3000/wecom/signature?url=http://example.com&ts=1"
+curl "http://0.0.0.0:3000/dingtalk/signature?url=http://example.com&ts=1"
 ```
 
 Response:
