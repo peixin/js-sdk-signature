@@ -6,8 +6,10 @@
 - 签名用的url必须是调用 JS 接口页面的完整URL，不包含#及其后面部分。
 - 并非所有 API 都需要 config 见 [JSAPI总览](https://developers.dingtalk.com/document/app/jsapi-overview?spm=ding_open_doc.document.0.0.6fbe63c6MzPYpq#topic-2024952)
 - `dd.ready` 后方可进行后续工作
-- 只需 config 一次 ?
-
+- **只需 config 一次**, 和微信不一样
+    > dd.config 一次，所有的需要 Auth 的 API List
+    > 之后 dd.ready 直接调用 API 就行
+    > get signature 传入的 url 为 dingtalk-jsapi 初始化时当前页面的 url。一般也就是 APP 被打开的入口页
 
 
 ### 引入 SDK 

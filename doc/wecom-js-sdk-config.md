@@ -4,9 +4,9 @@
 
 - 签名用的url必须是调用 JS 接口页面的完整URL，不包含#及其后面部分。
 
-- 每次 URL 变动，都要重新 config 之后才能调用 API
+- **每次 URL 变动，都要重新 config 之后才能调用 API**
 
-- 所有 API 调用都前需要 config
+- **所有 API 调用都前需要 config**
 
 
 
