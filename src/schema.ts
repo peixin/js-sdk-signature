@@ -11,6 +11,9 @@ export const envOptions = {
       "DINGTALK_APP_SECRET",
       "DINGTALK_NONCESTR",
       "DINGTALK_APP_KEY",
+      "WELINK_APP_KEY",
+      "WELINK_APP_SECRET",
+      "WELINK_NONCESTR",
     ],
     properties: {
       "WECOM_CORP_ID": {
@@ -33,6 +36,16 @@ export const envOptions = {
         type: "string",
       },
       "DINGTALK_NONCESTR": {
+        type: "string",
+      },
+
+      "WELINK_APP_KEY": {
+        type: "string",
+      },
+      "WELINK_APP_SECRET": {
+        type: "string",
+      },
+      "WELINK_NONCESTR": {
         type: "string",
       },
     },

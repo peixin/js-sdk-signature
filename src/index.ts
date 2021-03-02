@@ -9,6 +9,7 @@ fastify
   .register(require("fastify-cors"), { origin: "*", methods: ["GET"] })
   .register(require("./wecom"), { prefix: "/wecom" })
   .register(require("./dingtalk"), { prefix: "/dingtalk" })
+  .register(require("./welink"), { prefix: "/welink" })
   .ready(() => {
     Global.app = fastify;
   });

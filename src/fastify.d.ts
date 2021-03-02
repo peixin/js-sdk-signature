@@ -12,6 +12,11 @@ declare module "fastify" {
       "DINGTALK_APP_KEY": string;
       "DINGTALK_APP_SECRET": string;
       "DINGTALK_NONCESTR": string;
+
+      "WELINK_CORP_ID": string;
+      "WELINK_APP_KEY": string;
+      "WELINK_APP_SECRET": string;
+      "WELINK_NONCESTR": string;
     };
   }
 }
