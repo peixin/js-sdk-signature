@@ -57,6 +57,7 @@ const getJsApiTicket = async (accessToken: string) => {
 };
 
 const getSignature = async (url: string, ts: number): Promise<string> => {
+  Global.app.log.info(`url:${url},ts:${ts}`);
   const accessToken = await getAccessToken();
   if (!accessToken) {
     throw new Error("get accessToken failed");
@@ -68,11 +69,14 @@ const getSignature = async (url: string, ts: number): Promise<string> => {
   }
   Global.app.log.info(`ticket: ${ticket}`);
   // @ts-ignore
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.DINGTALK_NONCESTR}&timestamp=${ts}&url=${url}`;
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.WELINK_NONCESTR}&timestamp=${ts}&url=${url}`;
+  Global.app.log.info(`signatureStr:${signatureStr}`);
+  const shaSum = crypto.createHash("sha256");
 
-  const shaSum = crypto.createHash("sha1");
   shaSum.update(signatureStr);
-  return shaSum.digest("hex");
+  const signature = shaSum.digest("hex");
+  Global.app.log.info(`signature: ${signature}`);
+  return signature;
 };
 
 export default {
