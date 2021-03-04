@@ -6,7 +6,7 @@ import Global from "../global";
 
 const signatureHandler = async (request: FastifyRequest<{ Querystring: SignatureQuerystring }>) => {
   const { url } = request.query;
-  const ts = new Date().getTime();
+  const ts = parseInt((new Date().getTime() + "").substr(0, 10));
   const signature = await service.getSignature(decodeURIComponent(url), ts);
 
   return {
