@@ -37,5 +37,4 @@ export interface JsApiWelinkTicketData extends APIWelinkResponseData {
 
 export interface SignatureQuerystring {
   url: string;
-  ts: number;
 }

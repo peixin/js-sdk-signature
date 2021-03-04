@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import Global from "../global";
-import { AccessTokenData, AccessTokenWelinkData, JsApiWelinkTicketData } from "../types";
+import { AccessTokenWelinkData, JsApiWelinkTicketData } from "../types";
 import utils from "../utils";
 
 const cachedData = {
