@@ -10,6 +10,7 @@ fastify
   .register(require("./wecom"), { prefix: "/wecom" })
   .register(require("./dingtalk"), { prefix: "/dingtalk" })
   .register(require("./welink"), { prefix: "/welink" })
+  .register(require("./wechat"), { prefix: "/wechat" })
   .ready(() => {
     Global.app = fastify;
   });

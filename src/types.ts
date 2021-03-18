@@ -38,3 +38,10 @@ export interface JsApiWelinkTicketData extends APIWelinkResponseData {
 export interface SignatureQuerystring {
   url: string;
 }
+
+export interface WechatSignature {
+  signature: string;
+  timestamp: number;
+  nonce: number;
+  echostr: string;
+}

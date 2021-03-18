@@ -9,7 +9,7 @@ const fetchAPIData = async <T extends APIResponseData>(url: string, params: JSON
   try {
     const { data } = await Axios.get(url, { params, headers });
     const _data = { ts, ...data } as T;
-    if (_data.errcode !== 0) {
+    if (_data.errcode && _data.errcode !== 0) {
       throw new Error(JSON.stringify(data));
     }
     return _data;

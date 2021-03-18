@@ -20,6 +20,10 @@ declare module "fastify" {
       "WELINK_APP_KEY": string;
       "WELINK_APP_SECRET": string;
       "WELINK_NONCESTR": string;
+
+      "WECHAT_APP_ID": string;
+      "WECHAT_APP_SECRET": string;
+      "WECHAT_NONCESTR": string;
     };
   }
 }

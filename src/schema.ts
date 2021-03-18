@@ -17,6 +17,9 @@ export const envOptions = {
       "WELINK_APP_ID",
       "WELINK_APP_SECRET",
       "WELINK_NONCESTR",
+      "WECHAT_APP_ID",
+      "WECHAT_APP_SECRET",
+      "WECHAT_NONCESTR",
     ],
     properties: {
       "WECOM_CORP_ID": {
@@ -58,6 +61,16 @@ export const envOptions = {
         type: "string",
       },
       "WELINK_NONCESTR": {
+        type: "string",
+      },
+
+      "WECHAT_APP_ID": {
+        type: "string",
+      },
+      "WECHAT_APP_SECRET": {
+        type: "string",
+      },
+      "WECHAT_NONCESTR": {
         type: "string",
       },
     },
