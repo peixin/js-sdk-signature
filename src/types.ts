@@ -39,7 +39,7 @@ export interface SignatureQuerystring {
   url: string;
 }
 
-export interface WechatSignature {
+export interface WechatAuthQueryString {
   signature: string;
   timestamp: number;
   nonce: number;

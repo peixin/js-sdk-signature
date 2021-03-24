@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import Global from "../global";
 import { AccessTokenData, JsApiTicketData } from "../types";
 import utils from "../utils";
@@ -41,7 +40,7 @@ const getJsApiTicket = async (accessToken: string) => {
   return cachedData.jsApiTicket?.ticket;
 };
 
-const getSignature = async (url: string, ts: number): Promise<string> => {
+const getSignature = async (url: string, ts: number, nonceStr: string): Promise<string> => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     throw new Error("get accessToken failed");
@@ -52,12 +51,9 @@ const getSignature = async (url: string, ts: number): Promise<string> => {
     throw new Error("get JsApiTicket failed");
   }
   Global.app.log.info(`ticket: ${ticket}`);
-  // @ts-ignore
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.DINGTALK_NONCESTR}&timestamp=${ts}&url=${url}`;
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${nonceStr}&timestamp=${ts}&url=${url}`;
 
-  const shaSum = crypto.createHash("sha1");
-  shaSum.update(signatureStr);
-  return shaSum.digest("hex");
+  return utils.hash(signatureStr);
 };
 
 export default {

@@ -8,6 +8,7 @@ fastify
   .register(require("fastify-env"), envOptions)
   .register(require("fastify-cors"), { origin: "*", methods: ["GET"] })
   .register(require("./wecom"), { prefix: "/wecom" })
+  .register(require("./wechat"), { prefix: "/wechat" })
   .register(require("./dingtalk"), { prefix: "/dingtalk" })
   .register(require("./welink"), { prefix: "/welink" })
   .register(require("./wechat"), { prefix: "/wechat" })

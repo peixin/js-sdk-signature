@@ -1,6 +1,8 @@
 import Axios from "axios";
 import Global from "./global";
 import { JSONType, APIResponseData, APIWelinkResponseData } from "./types";
+import * as uuid from "uuid";
+import crypto from "crypto";
 
 const fetchAPIData = async <T extends APIResponseData>(url: string, params: JSONType, headers?: JSONType) => {
   Global.app.log.info(`fetch data: ${url}`);
@@ -83,10 +85,22 @@ const getAPIWelinkData = async <T extends APIWelinkResponseData>(
   return data;
 };
 
+const generateNonceStr = () => uuid.v4();
+
+const hash = (str: string, algorithm = "sha1") => {
+  console.log("hash", str, algorithm);
+  const shaSum = crypto.createHash(algorithm);
+  console.log(shaSum);
+  shaSum.update(str);
+  return shaSum.digest("hex");
+};
+
 export default {
   fetchAPIData,
   getAPIData,
   postAPIData,
   getAPIWelinkData,
   fetchWelinkAPIData,
+  generateNonceStr,
+  hash,
 };

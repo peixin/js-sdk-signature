@@ -3,21 +3,21 @@ import { signatureSchema } from "../schema";
 import service from "./service";
 import { SignatureQuerystring } from "../types";
 import Global from "../global";
+import utils from "../utils";
 
 const signatureHandler = async (request: FastifyRequest<{ Querystring: SignatureQuerystring }>) => {
   const { url } = request.query;
   const ts = parseInt((new Date().getTime() + "").substr(0, 10));
-  const signature = await service.getSignature(decodeURIComponent(url), ts);
+  const nonceStr = utils.generateNonceStr();
+  const signature = await service.getSignature(decodeURIComponent(url), ts, nonceStr);
 
   return {
     signature: signature,
-    // @ts-ignore
-    nonceStr: Global.app.config.WELINK_NONCESTR,
+    nonceStr: nonceStr,
     timestamp: ts,
     // @ts-ignore
     agentId: Global.app.config.WELINK_APP_ID,
-    // @ts-ignore
-    corpId: Global.app.config.WELINK_CORP_ID,
+    corpId: "",
   };
 };
 

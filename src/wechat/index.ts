@@ -1,26 +1,29 @@
 import { FastifyInstance, FastifyRequest } from "fastify";
-import { SignatureQuerystring, WechatSignature } from "../types";
+import { SignatureQuerystring, WechatAuthQueryString } from "../types";
 import service from "./service";
-import Global from "../global";
-import { signatureSchema } from "../schema";
+import { signatureSchema, wechatAPIAUthSchema } from "../schema";
+import utils from "../utils";
 
 const signatureHandler = async (request: FastifyRequest<{ Querystring: SignatureQuerystring }>) => {
   const { url } = request.query;
   const ts = Math.floor(new Date().getTime() / 1000);
-  console.log(ts);
-  const signature = await service.getSignature(decodeURIComponent(url), ts);
+  const nonceStr = utils.generateNonceStr();
+  const signature = await service.getSignature(decodeURIComponent(url), ts, nonceStr);
   return {
     signature: signature,
-    // @ts-ignore
-    nonceStr: Global.app.config.WECHAT_NONCESTR,
+    nonceStr: nonceStr,
     timestamp: ts,
   };
 };
 
 export default async (fastify: FastifyInstance): Promise<void> => {
-  fastify.get("/", {}, async (request: FastifyRequest<any>) => {
-    return (request.query as WechatSignature).echostr;
-  });
+  fastify.get(
+    "/",
+    { schema: wechatAPIAUthSchema },
+    async (request: FastifyRequest<{ Querystring: WechatAuthQueryString }>) => {
+      return request.query.echostr;
+    },
+  );
 
   fastify.get("/signature", { schema: signatureSchema }, signatureHandler);
 };

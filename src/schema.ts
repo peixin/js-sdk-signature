@@ -7,19 +7,15 @@ export const envOptions = {
       "WECOM_CORP_ID",
       "WECOM_AGENT_ID",
       "WECOM_APP_SECRET",
-      "WECOM_NONCESTR",
       "DINGTALK_CORP_ID",
       "DINGTALK_AGENT_ID",
       "DINGTALK_APP_SECRET",
-      "DINGTALK_NONCESTR",
       "DINGTALK_APP_KEY",
       "WELINK_APP_KEY",
       "WELINK_APP_ID",
       "WELINK_APP_SECRET",
-      "WELINK_NONCESTR",
       "WECHAT_APP_ID",
       "WECHAT_APP_SECRET",
-      "WECHAT_NONCESTR",
     ],
     properties: {
       "WECOM_CORP_ID": {
@@ -29,9 +25,6 @@ export const envOptions = {
         type: "string",
       },
       "WECOM_APP_SECRET": {
-        type: "string",
-      },
-      "WECOM_NONCESTR": {
         type: "string",
       },
 
@@ -50,9 +43,6 @@ export const envOptions = {
       "DINGTALK_APP_SECRET": {
         type: "string",
       },
-      "DINGTALK_NONCESTR": {
-        type: "string",
-      },
 
       "WELINK_APP_KEY": {
         type: "string",
@@ -60,17 +50,11 @@ export const envOptions = {
       "WELINK_APP_SECRET": {
         type: "string",
       },
-      "WELINK_NONCESTR": {
-        type: "string",
-      },
 
       "WECHAT_APP_ID": {
         type: "string",
       },
       "WECHAT_APP_SECRET": {
-        type: "string",
-      },
-      "WECHAT_NONCESTR": {
         type: "string",
       },
     },
@@ -99,6 +83,34 @@ export const signatureSchema = {
         agentId: { type: "string" },
         corpId: { type: "string" },
       },
+      additionalProperties: false,
+    },
+  },
+};
+
+export const wechatAPIAUthSchema = {
+  querystring: {
+    type: "object",
+    required: ["signature", "timestamp", "nonce", "echostr"],
+    properties: {
+      signature: {
+        type: "string",
+      },
+      timestamp: {
+        type: "string",
+      },
+      nonce: {
+        type: "string",
+      },
+      echostr: {
+        type: "string",
+      },
+    },
+    additionalProperties: false,
+  },
+  response: {
+    200: {
+      type: "string",
       additionalProperties: false,
     },
   },

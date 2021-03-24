@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import Global from "../global";
 import { AccessTokenWelinkData, JsApiWelinkTicketData } from "../types";
 import utils from "../utils";
@@ -56,7 +55,7 @@ const getJsApiTicket = async (accessToken: string) => {
   return cachedData.jsApiTicket?.jstickets;
 };
 
-const getSignature = async (url: string, ts: number): Promise<string> => {
+const getSignature = async (url: string, ts: number, nonceStr: string): Promise<string> => {
   Global.app.log.info(`url:${url},ts:${ts}`);
   const accessToken = await getAccessToken();
   if (!accessToken) {
@@ -68,13 +67,10 @@ const getSignature = async (url: string, ts: number): Promise<string> => {
     throw new Error("get JsApiTicket failed");
   }
   Global.app.log.info(`ticket: ${ticket}`);
-  // @ts-ignore
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${Global.app.config.WELINK_NONCESTR}&timestamp=${ts}&url=${url}`;
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${nonceStr}&timestamp=${ts}&url=${url}`;
   Global.app.log.info(`signatureStr:${signatureStr}`);
-  const shaSum = crypto.createHash("sha256");
 
-  shaSum.update(signatureStr);
-  const signature = shaSum.digest("hex");
+  const signature = utils.hash(signatureStr, "sha256");
   Global.app.log.info(`signature: ${signature}`);
   return signature;
 };
