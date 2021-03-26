@@ -11,7 +11,6 @@ fastify
   .register(require("./wechat"), { prefix: "/wechat" })
   .register(require("./dingtalk"), { prefix: "/dingtalk" })
   .register(require("./welink"), { prefix: "/welink" })
-  .register(require("./wechat"), { prefix: "/wechat" })
   .ready(() => {
     Global.app = fastify;
   });
