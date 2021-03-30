@@ -8,6 +8,7 @@ const cachedData = {
 } as {
   accessToken: AccessTokenData | null;
   jsApiTicket: JsApiTicketData | null;
+  cropJsApiTicket: JsApiTicketData | null;
 };
 
 const fetchAccessToken = async () => {
@@ -41,7 +42,23 @@ const getJsApiTicket = async (accessToken: string) => {
   return cachedData.jsApiTicket?.ticket;
 };
 
-const getSignature = async (url: string, ts: number, noncestr: string): Promise<string> => {
+const fetchCropJsApiTicket = async (accessToken: string) => {
+  return utils.fetchAPIData<JsApiTicketData>("https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket", {
+    "access_token": accessToken,
+  });
+};
+
+const getCropJsApiTicket = async (accessToken: string) => {
+  cachedData.cropJsApiTicket = await utils.getAPIData<JsApiTicketData>(cachedData.cropJsApiTicket, async () =>
+    fetchCropJsApiTicket(accessToken),
+  );
+  if (!cachedData.cropJsApiTicket) {
+    cachedData.accessToken = null;
+  }
+  return cachedData.cropJsApiTicket?.ticket;
+};
+
+const getSignature = async (url: string, ts: number, noncestr: string) => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     throw new Error("get accessToken failed");
@@ -52,9 +69,16 @@ const getSignature = async (url: string, ts: number, noncestr: string): Promise<
     throw new Error("get JsApiTicket failed");
   }
   Global.app.log.info(`ticket: ${ticket}`);
-  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
 
-  return utils.hash(signatureStr);
+  const cropTicket = await getCropJsApiTicket(accessToken);
+  if (!cropTicket) {
+    throw new Error("get Crop JsApiTicket failed");
+  }
+  Global.app.log.info(`cropTicket: ${cropTicket}`);
+  const signatureStr = `jsapi_ticket=${ticket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
+  const cropSignatureStr = `jsapi_ticket=${cropTicket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
+
+  return { signature: utils.hash(signatureStr), cropSignature: utils.hash(cropSignatureStr) };
 };
 
 export default {

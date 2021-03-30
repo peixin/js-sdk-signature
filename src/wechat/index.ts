@@ -1,3 +1,4 @@
+import Global from "../global";
 import { FastifyInstance, FastifyRequest } from "fastify";
 import { SignatureQuerystring, WechatAuthQueryString } from "../types";
 import service from "./service";
@@ -11,8 +12,11 @@ const signatureHandler = async (request: FastifyRequest<{ Querystring: Signature
   const signature = await service.getSignature(decodeURIComponent(url), ts, nonceStr);
   return {
     signature: signature,
+    cropSignature: signature,
     nonceStr: nonceStr,
     timestamp: ts,
+    // @ts-ignore
+    corpId: Global.app.config.WECHAT_APP_ID,
   };
 };
 
