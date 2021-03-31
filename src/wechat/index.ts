@@ -12,7 +12,6 @@ const signatureHandler = async (request: FastifyRequest<{ Querystring: Signature
   const signature = await service.getSignature(decodeURIComponent(url), ts, nonceStr);
   return {
     signature: signature,
-    cropSignature: signature,
     nonceStr: nonceStr,
     timestamp: ts,
     // @ts-ignore

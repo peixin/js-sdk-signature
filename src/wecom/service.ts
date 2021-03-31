@@ -8,7 +8,7 @@ const cachedData = {
 } as {
   accessToken: AccessTokenData | null;
   jsApiTicket: JsApiTicketData | null;
-  cropJsApiTicket: JsApiTicketData | null;
+  configJsApiTicket: JsApiTicketData | null;
 };
 
 const fetchAccessToken = async () => {
@@ -42,20 +42,20 @@ const getJsApiTicket = async (accessToken: string) => {
   return cachedData.jsApiTicket?.ticket;
 };
 
-const fetchCropJsApiTicket = async (accessToken: string) => {
+const fetchConfigJsApiTicket = async (accessToken: string) => {
   return utils.fetchAPIData<JsApiTicketData>("https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket", {
     "access_token": accessToken,
   });
 };
 
-const getCropJsApiTicket = async (accessToken: string) => {
-  cachedData.cropJsApiTicket = await utils.getAPIData<JsApiTicketData>(cachedData.cropJsApiTicket, async () =>
-    fetchCropJsApiTicket(accessToken),
+const getConfigJsApiTicket = async (accessToken: string) => {
+  cachedData.configJsApiTicket = await utils.getAPIData<JsApiTicketData>(cachedData.configJsApiTicket, async () =>
+    fetchConfigJsApiTicket(accessToken),
   );
-  if (!cachedData.cropJsApiTicket) {
+  if (!cachedData.configJsApiTicket) {
     cachedData.accessToken = null;
   }
-  return cachedData.cropJsApiTicket?.ticket;
+  return cachedData.configJsApiTicket?.ticket;
 };
 
 const getSignature = async (url: string, ts: number, noncestr: string) => {
@@ -70,15 +70,15 @@ const getSignature = async (url: string, ts: number, noncestr: string) => {
   }
   Global.app.log.info(`ticket: ${ticket}`);
 
-  const cropTicket = await getCropJsApiTicket(accessToken);
+  const cropTicket = await getConfigJsApiTicket(accessToken);
   if (!cropTicket) {
     throw new Error("get Crop JsApiTicket failed");
   }
   Global.app.log.info(`cropTicket: ${cropTicket}`);
   const signatureStr = `jsapi_ticket=${ticket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
-  const cropSignatureStr = `jsapi_ticket=${cropTicket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
+  const configSignatureStr = `jsapi_ticket=${cropTicket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
 
-  return { signature: utils.hash(signatureStr), cropSignature: utils.hash(cropSignatureStr) };
+  return { signature: utils.hash(signatureStr), configSignature: utils.hash(configSignatureStr) };
 };
 
 export default {

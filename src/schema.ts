@@ -78,7 +78,7 @@ export const signatureSchema = {
       required: ["signature"],
       properties: {
         signature: { type: "string" },
-        cropSignature: { type: "string" },
+        configSignature: { type: "string" },
         nonceStr: { type: "string" },
         timestamp: { type: "string" },
         agentId: { type: "string" },
