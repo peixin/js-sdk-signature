@@ -53,6 +53,10 @@ const getSignature = async (url: string, ts: number, nonceStr: string): Promise<
     throw new Error("get JsApiTicket failed");
   }
   Global.app.log.info(`ticket: ${ticket}`);
+  Global.app.log.info(`noncestr: ${nonceStr}`);
+  Global.app.log.info(`timestamp: ${ts}`);
+  Global.app.log.info(`url: ${url}`);
+
   const signatureStr = `jsapi_ticket=${ticket}&noncestr=${nonceStr}&timestamp=${ts}&url=${url}`;
 
   return utils.hash(signatureStr);

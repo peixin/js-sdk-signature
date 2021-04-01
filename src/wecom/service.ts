@@ -70,13 +70,18 @@ const getSignature = async (url: string, ts: number, noncestr: string) => {
   }
   Global.app.log.info(`ticket: ${ticket}`);
 
-  const cropTicket = await getConfigJsApiTicket(accessToken);
-  if (!cropTicket) {
-    throw new Error("get Crop JsApiTicket failed");
+  const configTicket = await getConfigJsApiTicket(accessToken);
+  if (!configTicket) {
+    throw new Error("get config JsApiTicket failed");
   }
-  Global.app.log.info(`cropTicket: ${cropTicket}`);
+
+  Global.app.log.info(`configTicket: ${configTicket}`);
+  Global.app.log.info(`noncestr: ${noncestr}`);
+  Global.app.log.info(`timestamp: ${ts}`);
+  Global.app.log.info(`url: ${url}`);
+
   const signatureStr = `jsapi_ticket=${ticket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
-  const configSignatureStr = `jsapi_ticket=${cropTicket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
+  const configSignatureStr = `jsapi_ticket=${configTicket}&noncestr=${noncestr}&timestamp=${ts}&url=${url}`;
 
   return { signature: utils.hash(signatureStr), configSignature: utils.hash(configSignatureStr) };
 };
